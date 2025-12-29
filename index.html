@@ -1,172 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="icon" href="images/school logo.png">
 <head>
+    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Week Event — Tickets</title>
+<title>Student Week Event 2026 — Official</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Feather Icons -->
+<script src="https://unpkg.com/feather-icons"></script>
 
 <style>
-    * {
-        margin: 0; padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
+:root {
+    --blue: #00aaff;
+    --blue2: #4fd3ff;
+    --radius: 18px;
+}
 
-    body {
-        background: #020617;
-        color: #e6eeff;
-        overflow-x: hidden;
-    }
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
 
-    /* === Animated Background Blobs === */
-    .blob {
-        position: fixed;
-        width: 600px;
-        height: 600px;
-        border-radius: 50%;
-        filter: blur(150px);
-        opacity: 0.6;
-        animation: float 12s infinite ease-in-out;
-        z-index: -3;
-    }
+body.dark {
+    background: #020617;
+    color: white;
+}
+body.light {
+    background: #f5faff;
+    color: #0a1a33;
+}
+body {
+    transition: 0.5s ease;
+    overflow-x: hidden;
+}
 
-    .blob1 {
-        background: #005bff;
-        top: -100px; left: -150px;
-    }
+/* HEADER */
+.header {
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 10px;
+}
+.header img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+.header h2 {
+    font-size: 1.1rem;
+    opacity: 0.75;
+    margin-top: 3px;
+}
 
-    .blob2 {
-        background: #00c6ff;
-        bottom: -150px; right: -100px;
-        animation-delay: 4s;
-    }
+/* THEME BUTTON */
+.theme-toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 8px 15px;
+    background: var(--blue);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 20;
+}
 
-    @keyframes float {
-        0% { transform: translateY(0px) scale(1); }
-        50% { transform: translateY(-80px) scale(1.1); }
-        100% { transform: translateY(0px) scale(1); }
-    }
+/* 3D FLOATING OBJECTS */
+#floaters {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  overflow: hidden;
+  z-index: -10;
+}
+.fobj {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#0af,#08f);
+    opacity: 0.25;
+    filter: blur(2px);
+    animation: floatAnim linear infinite;
+}
+@keyframes floatAnim {
+    from { transform: translateY(120vh) rotate(0deg); }
+    to { transform: translateY(-20vh) rotate(360deg); }
+}
 
-    /* === Hero Section === */
-    .hero {
-        text-align: center;
-        padding: 120px 20px 80px;
-    }
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 40px 20px 20px;
+}
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(90deg,#0df,#4af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#countdown {
+    margin-top: 8px;
+    font-size: 1.2rem;
+    color: var(--blue2);
+}
 
-    .hero h1 {
-        font-size: 4rem;
-        font-weight: 700;
-        letter-spacing: -1.5px;
-        background: linear-gradient(90deg, #2196ff, #00eaff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: fadeIn 1.5s ease forwards;
-    }
+/* CARD */
+.card {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 30px;
+    border-radius: var(--radius);
+    backdrop-filter: blur(12px);
+}
+body.dark .card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+body.light .card {
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+}
 
-    .hero p {
-        font-size: 1.3rem;
-        opacity: 0.85;
-        margin-top: 10px;
-        animation: fadeIn 2.2s ease forwards;
-    }
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg,#42a5ff,#00eaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    /* Fade in animation */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+.info-row {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0;
+    align-items: center;
+    font-size: 1.1rem;
+}
 
-    /* === Premium Glass Card === */
-    .card {
-        max-width: 900px;
-        margin: 0 auto 70px;
-        padding: 40px;
-        background: rgba(255,255,255,0.06);
-        border-radius: 20px;
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.15);
-        box-shadow: 0 0 40px rgba(0,140,255,0.25);
-        animation: fadeIn 2.5s ease forwards;
-    }
+/* FORM */
+.ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.ticket-form input {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #bcd7ff;
+}
+.ticket-form button {
+    padding: 14px;
+    background: var(--blue);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
 
-    .card h2 {
-        font-size: 2.2rem;
-        margin-bottom: 15px;
-        background: linear-gradient(90deg, #42a5ff, #00eaff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+/* TICKET */
+.ticket-wrapper {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+.ticket {
+    width: 360px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.913);
+    color: #002244;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 25px rgba(0,160,255,0.25);
+    text-align: center;
+}
+.ticket canvas {
+    margin-top: 15px;
+}
+/* .download-btn {
+    margin-top: 12px;
+    padding: 10px 15px;
+    background: var(--blue);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+} */
+.ticket-form select {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #bcd7ff;
+    background: white;
+    color: #002244;
+}
 
-    .details {
-        margin-bottom: 30px;
-        line-height: 1.9;
-        font-size: 1.1rem;
-        color: #bcd4ff;
-    }
+.ticket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .details strong {
-        color: #e4f1ff;
-    }
+.ticket {
+    width: 360px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.913);
+    color: #002244;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 25px rgba(0,160,255,0.25);
+    text-align: center;
+    margin-bottom: 10px; /* Space between ticket and button */
+}
 
-    iframe {
-        width: 100%;
-        height: 680px;
-        border: none;
-        border-radius: 14px;
-        margin-top: 15px;
-        box-shadow: 0 0 20px rgba(0,140,255,0.3);
-    }
+.download-btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+    background: var(--blue);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
 
-    footer {
-        text-align: center;
-        padding: 25px 0;
-        font-size: 0.9rem;
-        color: #7aaaff;
-        opacity: 0.7;
-    }
 
-    @media (max-width: 700px) {
-        .hero h1 { font-size: 2.8rem; }
-        .card { padding: 25px; }
-    }
+/* RESPONSIVE */
+@media (max-width: 600px){
+    .hero-title { font-size: 2.3rem; }
+    .card { padding: 20px; }
+}
 </style>
 </head>
 
-<body>
+<body class="dark">
 
-<!-- Background Blobs -->
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
 
-<!-- HERO SECTION -->
+<!-- HEADER WITH LOGO -->
+<div class="header">
+    <img src="images/school logo.png" alt="School Logo">
+    <h1>FEDERAL UNIVERSITY OF HEALTH SCIENCES OTUKPO</h1>
+    <h2>STUDENT WEEK ASSOCIATION</h2>
+</div>
+
+<!-- 3D FLOATING SHAPES -->
+<div id="floaters"></div>
+
+<script>
+for (let i = 0; i < 20; i++) {
+    const f = document.createElement("div");
+    f.className = "fobj";
+    f.style.left = Math.random()*100+"vw";
+    f.style.animationDuration = (8 + Math.random()*12) + "s";
+    f.style.width = f.style.height = (40 + Math.random()*60) + "px";
+    document.getElementById("floaters").appendChild(f);
+}
+</script>
+
+<!-- HERO -->
 <div class="hero">
-    <h1>Student Week Event 2026</h1>
-    <p>The Biggest, Brightest, Most Electric Night on Campus</p>
+    <div class="hero-title">Student Week Event 2026</div>
+    <div id="countdown"></div>
 </div>
 
-<!-- CONTENT CARD -->
+<script>
+const eventDate = new Date("October 2, 2026 19:00:00").getTime();
+setInterval(()=>{
+    let diff = eventDate - Date.now();
+    if(diff < 0){ countdown.innerHTML="Event Live"; return; }
+    let d = Math.floor(diff/86400000);
+    let h = Math.floor((diff/3600000)%24);
+    let m = Math.floor((diff/60000)%60);
+    let s = Math.floor((diff/1000)%60);
+    countdown.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+});
+</script>
+
+<!-- MAIN CARD -->
 <div class="card">
-    <h2>Event Details</h2>
-    <div class="details">
-        📅 <strong>Date:</strong> 2nd October 2026 <br>
-        🕖 <strong>Time:</strong> 7:00 PM <br>
-        📍 <strong>Venue:</strong> Theatre Lecture Hall B <br>
-        🎫 <strong>Ticket Type:</strong> Regular <br>
-        🔵 <strong>Theme:</strong> Vibrant Neon Blue
-    </div>
+    <h2 class="section-title">Event Information</h2>
 
-    <h2>Reserve Your Ticket</h2>
-    <p style="margin-bottom: 15px; color: #d3e4ff;">Fill out the form below to secure your spot at the event.</p>
+    <div class="info-row"><i data-feather="calendar"></i> 2nd October 2026</div>
+    <div class="info-row"><i data-feather="clock"></i> 7:00 PM</div>
+    <div class="info-row"><i data-feather="map-pin"></i> Theatre Lecture Hall B</div>
+    <div class="info-row"><i data-feather="ticket"></i> Regular Ticket</div>
+    <script>feather.replace();</script>
 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfchlM8Bv6eSRTRe2Pwr1pN8T81-sXnKiQvieNc0LQKtMRU_Q/viewform?usp=publish-editor"></iframe>
+    <h2 class="section-title" style="margin-top:25px;">Get Your Ticket</h2>
+
+    <div class="ticket-form">
+    <input id="ticketName" placeholder="Full Name">
+    <input id="ticketEmail" placeholder="Email Address">
+    <select id="ticketType">
+        <option value="Regular" selected>Regular</option>
+        <option value="VIP">VIP</option>
+        <option value="VVIP">VVIP</option>
+    </select>
+    <button onclick="generateTicket()">Generate Ticket</button>
 </div>
 
-<footer>
-    © 2026 Student Week Event • Designed with Excellence
-</footer>
+    <div id="ticketPreview" class="ticket-wrapper"></div>
+
+    <a href="verify.html" style="display:block;text-align:center;margin-top:25px;color:var(--blue2);font-weight:600;">
+        Go to Ticket Verification Page →
+    </a>
+</div>
+
+<!-- JS: QR / EmailJS / Canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+function generateTicket(){
+    const name = ticketName.value.trim();
+    const email = ticketEmail.value.trim();
+    const type = document.getElementById("ticketType").value;
+
+    if(!name || !email){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please enter your name and email!',
+        });
+        return;
+    }
+
+ticketPreview.innerHTML = `
+    <div class="ticket-container">
+        <div class="ticket" id="ticketCard" style="border-color:${type==='VIP'?'gold': type==='VVIP'?'purple':'#00aaff'}">
+            <h3>Student Week Event 2026</h3>
+            <small>Theatre Lecture Hall B - 7PM</small>
+            <p style="margin-top:10px;font-size:1.1rem;"><strong>${name}</strong></p>
+            <p style="font-size:1rem; margin:5px 0;"><strong>Ticket Type:</strong> ${type}</p>
+            <canvas id="qr"></canvas>
+        </div>
+        <button class="download-btn" onclick="downloadTicket()">Download Ticket</button>
+    </div>
+`;
+
+
+    // Generate QR with ticket type
+    new QRious({
+        element: document.getElementById("qr"),
+        value: `${name}|${type}|StudentWeek2026`,
+        size: 150
+    });
+
+    // Send EmailJS
+    emailjs.send("service_tx7khda","template_dfrlu3c",{
+        user_name: name,
+        to_email: email,
+        ticket_info: type
+    });
+
+    // Sweet alert for success
+    Swal.fire({
+        icon: 'success',
+        title: 'Ticket Generated!',
+        text: `Your ${type} ticket has been created successfully.`,
+    });
+}
+
+
+function downloadTicket(){
+    html2canvas(document.getElementById("ticketCard")).then(canvas=>{
+        let a = document.createElement("a");
+        a.href = canvas.toDataURL("image/png");
+        a.download = "StudentWeek_Ticket.png";
+        a.click();
+    });
+}
+
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+}
+</script>
 
 </body>
 </html>
+
