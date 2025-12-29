@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Week Event — Tickets</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0; padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #020617;
+        color: #e6eeff;
+        overflow-x: hidden;
+    }
+
+    /* === Animated Background Blobs === */
+    .blob {
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.6;
+        animation: float 12s infinite ease-in-out;
+        z-index: -3;
+    }
+
+    .blob1 {
+        background: #005bff;
+        top: -100px; left: -150px;
+    }
+
+    .blob2 {
+        background: #00c6ff;
+        bottom: -150px; right: -100px;
+        animation-delay: 4s;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-80px) scale(1.1); }
+        100% { transform: translateY(0px) scale(1); }
+    }
+
+    /* === Hero Section === */
+    .hero {
+        text-align: center;
+        padding: 120px 20px 80px;
+    }
+
+    .hero h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        letter-spacing: -1.5px;
+        background: linear-gradient(90deg, #2196ff, #00eaff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeIn 1.5s ease forwards;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        opacity: 0.85;
+        margin-top: 10px;
+        animation: fadeIn 2.2s ease forwards;
+    }
+
+    /* Fade in animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === Premium Glass Card === */
+    .card {
+        max-width: 900px;
+        margin: 0 auto 70px;
+        padding: 40px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.15);
+        box-shadow: 0 0 40px rgba(0,140,255,0.25);
+        animation: fadeIn 2.5s ease forwards;
+    }
+
+    .card h2 {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+        background: linear-gradient(90deg, #42a5ff, #00eaff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .details {
+        margin-bottom: 30px;
+        line-height: 1.9;
+        font-size: 1.1rem;
+        color: #bcd4ff;
+    }
+
+    .details strong {
+        color: #e4f1ff;
+    }
+
+    iframe {
+        width: 100%;
+        height: 680px;
+        border: none;
+        border-radius: 14px;
+        margin-top: 15px;
+        box-shadow: 0 0 20px rgba(0,140,255,0.3);
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px 0;
+        font-size: 0.9rem;
+        color: #7aaaff;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 700px) {
+        .hero h1 { font-size: 2.8rem; }
+        .card { padding: 25px; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Background Blobs -->
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Student Week Event 2026</h1>
+    <p>The Biggest, Brightest, Most Electric Night on Campus</p>
+</div>
+
+<!-- CONTENT CARD -->
+<div class="card">
+    <h2>Event Details</h2>
+    <div class="details">
+        📅 <strong>Date:</strong> 2nd October 2026 <br>
+        🕖 <strong>Time:</strong> 7:00 PM <br>
+        📍 <strong>Venue:</strong> Theatre Lecture Hall B <br>
+        🎫 <strong>Ticket Type:</strong> Regular <br>
+        🔵 <strong>Theme:</strong> Vibrant Neon Blue
+    </div>
+
+    <h2>Reserve Your Ticket</h2>
+    <p style="margin-bottom: 15px; color: #d3e4ff;">Fill out the form below to secure your spot at the event.</p>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfchlM8Bv6eSRTRe2Pwr1pN8T81-sXnKiQvieNc0LQKtMRU_Q/viewform?usp=publish-editor"></iframe>
+</div>
+
+<footer>
+    © 2026 Student Week Event • Designed with Excellence
+</footer>
+
+</body>
+</html>
